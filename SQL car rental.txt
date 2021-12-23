@@ -1,0 +1,107 @@
+create database tavs;
+use tavs;
+
+#### Analyst Table #####
+create table Analyst(NAME varchar(50) primary key, USERNAME varchar(50)  not null, PASSWORD varchar(10)  not null,  EMAIL varchar(70)  not null,PHONE varchar(15)   not null, ADDRESS varchar(50) not null );
+
+insert into Analyst values('Mahesh', 'Mahesh', '4561', 'maheshpatil@gmail.com',9876543210, 'India');
+
+#### Manager Table #####
+create table Manager(NAME varchar(50) primary key, USERNAME varchar(50)  not null, PASSWORD varchar(10)  not null,  EMAIL varchar(70)  not null, PHONE varchar(15)  not null, ADDRESS varchar(50) not null );
+
+insert into manager values('Navin', 'Navin', '9876', 'navinrichard@gmail.com',9999999999, 'India');
+
+
+#### Register Table #####
+create table register(NAME varchar(50) primary key, USERNAME varchar(50)  not null, PASSWORD varchar(10)  not null, EMAIL varchar(70)  not null, PHONE varchar(15)   not null, ADDRESS varchar(50) not null );
+
+#### Vehicle Table #####
+
+create table vehicle(V_id INT primary key, V_name varchar(50) not null, V_company varchar(50) not null, V_type varchar(10) not null, charge_1 INT not null, charge_2 INT not null, charge_3 INT not null, status varchar(15) not null);
+
+
+#### Booking table ####
+
+create table Booking(B_id INT primary key, C_name varchar(50) not null, C_id INTEGER(15) not null, C_mob INTEGER(15) not null,B_date_time DATETIME not null , Travel_dt DATETIME not null,exp_return_dt DATETIME not null, V_id INT, Adv_payment int default 0, foreign key(V_id) references vehicle(V_id));
+
+#### pickup table ####
+
+create table pickup(B_id INT primary key, Pickup_dt DATETIME not null,V_reading INT not null, foreign key(B_id) references Booking(B_id));
+
+#### RETURN TABLE ####
+
+create table returnVehicle(B_id INT primary key, return_dt DATETIME not null,RV_reading INT not null, Total_fare INT not null, foreign key(B_id) references Booking(B_id));
+
+#### Booking History Table ####
+
+create table BookingHistory(B_id INT primary key, C_name varchar(50) not null, C_id INTEGER(20) not null, C_mob INTEGER(20) not null,V_id int not null,V_name varchar(50) not null,V_type varchar(10) not null, pickup_dt DATETIME not null , return_dt DATETIME not null, Distance_trav INT not null, Total_fare int not null, 
+	foreign key(V_id) references vehicle(V_id),
+	foreign key(B_id) references Booking(B_id));
+
+
+#### inserting vehicle in vehicle table ####
+TATA SUMO - AC(100,12,600) NAC(65,8,400)
+Ambassador - AC(85,12,600) NAC(60,8,400)
+OMNI - NAC(55,7,400)
+esteem - AC(95,12,600)
+armada - NAC(65,8,400)
+###################################################################################
+insert into vehicle values(1,'Ambassadors', 'Hindustan Motors','NON-AC',60,8,240,'AVAILABLE');
+insert into vehicle values(2,'Ambassadors', 'Hindustan Motors','NON-AC',60,8,240,'AVAILABLE');
+insert into vehicle values(3,'Ambassadors', 'Hindustan Motors','NON-AC',60,8,240,'AVAILABLE');
+insert into vehicle values(4,'Ambassadors', 'Hindustan Motors','NON-AC',60,8,240,'AVAILABLE');
+insert into vehicle values(5,'Ambassadors', 'Hindustan Motors','NON-AC',60,8,240,'AVAILABLE');
+insert into vehicle values(6,'Ambassadors', 'Hindustan Motors','NON-AC',60,8,240,'AVAILABLE');
+insert into vehicle values(7,'Ambassadors', 'Hindustan Motors','NON-AC',60,8,240,'AVAILABLE');
+insert into vehicle values(8,'Ambassadors', 'Hindustan Motors','NON-AC',60,8,240,'AVAILABLE');
+insert into vehicle values(9,'Ambassadors', 'Hindustan Motors','NON-AC',60,8,240,'AVAILABLE');
+insert into vehicle values(10,'Ambassadors', 'Hindustan Motors','NON-AC',60,8,240,'AVAILABLE');
+insert into vehicle values(11,'Ambassadors', 'Hindustan Motors','AC',90,12,360,'AVAILABLE');
+insert into vehicle values(12,'Ambassadors', 'Hindustan Motors','AC',90,12,360,'AVAILABLE');
+
+insert into vehicle values(13,'Sumo', 'Tata','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(14,'Sumo', 'Tata','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(15,'Sumo', 'Tata','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(16,'Sumo', 'Tata','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(17,'Sumo', 'Tata','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(18,'Sumo', 'Tata','AC',100,12,400,'AVAILABLE');
+insert into vehicle values(19,'Sumo', 'Tata','AC',100,12,400,'AVAILABLE');
+insert into vehicle values(20,'Sumo', 'Tata','AC',100,12,400,'AVAILABLE');
+insert into vehicle values(21,'Sumo', 'Tata','AC',100,12,400,'AVAILABLE');
+insert into vehicle values(22,'Sumo', 'Tata','AC',100,12,400,'AVAILABLE');
+
+insert into vehicle values(23,'Omni', 'Maruti','NON-AC',55,7,220,'AVAILABLE');
+insert into vehicle values(24,'Omni', 'Maruti','NON-AC',55,7,220,'AVAILABLE');
+insert into vehicle values(25,'Omni', 'Maruti','NON-AC',55,7,220,'AVAILABLE');
+insert into vehicle values(26,'Omni', 'Maruti','NON-AC',55,7,220,'AVAILABLE');
+insert into vehicle values(27,'Omni', 'Maruti','NON-AC',55,7,220,'AVAILABLE');
+insert into vehicle values(28,'Omni', 'Maruti','NON-AC',55,7,220,'AVAILABLE');
+insert into vehicle values(29,'Omni', 'Maruti','NON-AC',55,7,220,'AVAILABLE');
+insert into vehicle values(30,'Omni', 'Maruti','NON-AC',55,7,220,'AVAILABLE');
+insert into vehicle values(31,'Omni', 'Maruti','NON-AC',55,7,220,'AVAILABLE');
+insert into vehicle values(32,'Omni', 'Maruti','NON-AC',55,7,220,'AVAILABLE');
+insert into vehicle values(33,'Esteem', 'Maruti','AC',95,12,380,'AVAILABLE');
+insert into vehicle values(34,'Esteem', 'Maruti','AC',95,12,380,'AVAILABLE');
+insert into vehicle values(35,'Esteem', 'Maruti','AC',95,12,380,'AVAILABLE');
+insert into vehicle values(36,'Esteem', 'Maruti','AC',95,12,380,'AVAILABLE');
+insert into vehicle values(37,'Esteem', 'Maruti','AC',95,12,380,'AVAILABLE');
+insert into vehicle values(38,'Esteem', 'Maruti','AC',95,12,380,'AVAILABLE');
+insert into vehicle values(39,'Esteem', 'Maruti','AC',95,12,380,'AVAILABLE');
+insert into vehicle values(40,'Esteem', 'Maruti','AC',95,12,380,'AVAILABLE');
+insert into vehicle values(41,'Esteem', 'Maruti','AC',95,12,380,'AVAILABLE');
+insert into vehicle values(42,'Esteem', 'Maruti','AC',95,12,380,'AVAILABLE');
+insert into vehicle values(43,'Armada', 'Mahindra','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(44,'Armada', 'Mahindra','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(45,'Armada', 'Mahindra','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(46,'Armada', 'Mahindra','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(47,'Armada', 'Mahindra','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(48,'Armada', 'Mahindra','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(49,'Armada', 'Mahindra','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(50,'Armada', 'Mahindra','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(51,'Armada', 'Mahindra','NON-AC',65,8,260,'AVAILABLE');
+insert into vehicle values(52,'Armada', 'Mahindra','NON-AC',65,8,260,'AVAILABLE');
+###################################################################################################
+
+
+
+
